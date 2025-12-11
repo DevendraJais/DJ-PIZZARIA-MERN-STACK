@@ -200,6 +200,7 @@ export default function Checkout() {
               }
             }
           }
+          localStorage.removeItem('voucher');
           localStorage.removeItem('appliedVoucher');
           try { window.dispatchEvent(new Event('cartUpdated')); } catch (e) {}
         } catch (e) {
@@ -401,6 +402,7 @@ export default function Checkout() {
                     }
                   }
                 }
+                localStorage.removeItem('voucher');
                 localStorage.removeItem('appliedVoucher');
                 try { window.dispatchEvent(new Event('cartUpdated')); } catch (e) {}
               } catch (e) {
