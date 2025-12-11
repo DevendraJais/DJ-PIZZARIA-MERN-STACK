@@ -104,7 +104,11 @@ export default function Navbar() {
         <div className="nav-left">
           <NavLink to="/" className="brand" onClick={closeMobileMenu}>
             {/* DJ‑Pizzaria */}
-            <img src='../public/logo/FullLogo_Transparent_NoBuffer.png'></img>
+            <img 
+              src={import.meta.env.BASE_URL + 'logo/FullLogo_Transparent_NoBuffer.png'} 
+              alt="DJ‑Pizzaria"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
           </NavLink>
         </div>
 
