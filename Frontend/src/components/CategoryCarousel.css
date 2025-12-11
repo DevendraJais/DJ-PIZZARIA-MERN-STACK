@@ -10,7 +10,7 @@ overflow-x: auto;       /* horizontal scroll */
 overflow-y: visible;    /* allow vertical move */
 scroll-behavior: smooth;
 -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-touch-action: auto; /* let browser handle both directions */
+touch-action: pan-x pan-y;
 overscroll-behavior: auto;
 flex-wrap: nowrap;       /* keep items in single line */
 justify-content: flex-start;
@@ -34,6 +34,7 @@ align-items: center;
 cursor: pointer;
 padding: 0.25rem 0.25rem 0.75rem;
 border-bottom: 3px solid transparent;
+touch-action: pan-x pan-y;
 }
 
 /* Image container */
