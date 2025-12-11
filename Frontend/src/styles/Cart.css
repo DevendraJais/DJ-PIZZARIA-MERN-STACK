@@ -1,0 +1,13 @@
+.cart-page { max-width: 920px; margin: 30px auto; padding: 20px; }
+.cart-items { border: 1px solid rgba(0,0,0,0.06); border-radius: 10px; padding: 12px; background: #fff; }
+.cart-item { display:flex; justify-content:space-between; padding:10px 6px; border-bottom:1px solid rgba(0,0,0,0.03) }
+.ci-left { display:flex; flex-direction:column }
+.ci-right { font-weight:700 }
+.cart-actions { margin-top: 18px; display:flex; flex-direction:column; gap:12px }
+.voucher-row { display:flex; gap:8px }
+.voucher-row input { flex:1; padding:10px; border-radius:8px; border:1px solid #e5e7eb }
+.voucher-row button { padding:10px 14px; border-radius:8px; border:none; background:linear-gradient(90deg,#ef4444,#fb923c); color:#fff; font-weight:700 }
+.totals { background:#fafafa; padding:12px; border-radius:8px; display:flex; flex-direction:column; gap:6px }
+.total { font-size:1.1rem; font-weight:800 }
+.checkout-btn { padding:12px 18px; border-radius:10px; border:none; background:linear-gradient(90deg,#06b6d4,#0ea5ae); color:#fff; font-weight:800 }
+.cart-message { padding:10px; background:rgba(34,197,94,0.1); color:#166534; border-radius:8px }

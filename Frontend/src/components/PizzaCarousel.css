@@ -1,0 +1,346 @@
+.pizza-carousel-section {
+  background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+  padding: 2.8rem 1.5rem;
+  margin: 1.9rem 0;
+  border-radius: 12px;
+}
+
+.carousel-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.carousel-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+  /* box-shadow: 0 12px 50px rgba(0, 0, 0, 0.15); */
+}
+
+
+
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-track-continuous {
+  display: flex;
+  gap: 1.5rem;
+  will-change: transform;
+}
+
+.carousel-item {
+  min-width: calc(20% - 1.2rem);
+  flex-shrink: 0;
+}
+
+/* Removed animations - using continuous smooth scrolling */
+
+.pizza-card-carousel {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pizza-card-carousel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.pizza-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.pizza-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.pizza-card-carousel:hover .pizza-image {
+  transform: scale(1.08);
+}
+
+.pizza-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(227, 24, 55, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pizza-card-carousel:hover .pizza-overlay {
+  opacity: 1;
+}
+
+.pizza-name {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+
+/* Background overlay */
+.pizza-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Popup box */
+.pizza-modal-content {
+  width: 850px;
+  height: 500px;
+  background: #fff;
+  display: flex;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  animation: scaleIn 0.25s ease;
+}
+
+/* Left side image */
+.pizza-modal-left {
+  flex: 1.1;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pizza-modal-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right side content */
+.pizza-modal-right {
+  flex: 1;
+  padding: 2rem;
+}
+
+.pizza-modal-right h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #333;
+}
+
+.modal-desc {
+  margin: 10px 0 20px;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+/* Size selector */
+.modal-size-selector span {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.modal-size-selector button {
+  padding: 8px 16px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-size-selector button.active {
+  background: #e31837;
+  color: #fff;
+  border-color: #e31837;
+}
+
+.modal-add-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  background: #e31837;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.modal-add-btn:hover {
+  background: #c3142f;
+}
+
+/* Close button */
+.pizza-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+}
+
+.pizza-modal-close:hover {
+  color: #000;
+}
+
+
+/*login pop-up when user click on add to cart*/
+.login-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.login-popup {
+  background: #fff;
+  padding: 24px;
+  width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  animation: popIn .2s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.popup-login-btn {
+  background: #0078ff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.popup-cancel-btn {
+  background: #ddd;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.85); opacity: 0 }
+  to { transform: scale(1); opacity: 1 }
+}
+
+
+/* Indicators removed - using continuous scroll */
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .carousel-item {
+    min-width: calc(25% - 1.2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    min-width: calc(33.33% - 1.2rem);
+  }
+
+  .carousel-title {
+    font-size: 1.5rem;
+  }
+
+  .pizza-carousel-section {
+    padding: 2rem 1rem;
+  }
+
+  .carousel-track {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-item {
+    min-width: calc(50% - 0.75rem);
+  }
+
+  .carousel-indicators {
+    gap: 0.5rem;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Smooth continuous scroll effect */
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.carousel-item {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

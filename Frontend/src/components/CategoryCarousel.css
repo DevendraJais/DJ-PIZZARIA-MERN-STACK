@@ -1,0 +1,101 @@
+section{
+    margin-top: 2.8rem;
+}
+
+.category-slider {
+display: flex;
+gap: 1.6rem;
+padding: 0 0.75rem;
+overflow-x: auto;       /* horizontal scroll */
+overflow-y: visible;    /* allow vertical move */
+scroll-behavior: smooth;
+-webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+touch-action: auto; /* let browser handle both directions */
+overscroll-behavior: auto;
+flex-wrap: nowrap;       /* keep items in single line */
+justify-content: flex-start;
+}
+
+/* Hide scrollbars */
+.category-slider::-webkit-scrollbar {
+display: none;
+}
+.category-slider {
+scrollbar-width: none;   /* Firefox */
+-ms-overflow-style: none; /* IE & Edge */
+}
+
+/* Individual category item */
+.category-item {
+flex: 0 0 auto;  /* don't shrink */
+display: flex;
+flex-direction: column;
+align-items: center;
+cursor: pointer;
+padding: 0.25rem 0.25rem 0.75rem;
+border-bottom: 3px solid transparent;
+}
+
+/* Image container */
+.category-item img {
+width: 6rem;   /* 24 */
+height: 6rem;
+border-radius: 50%;
+background-color: #f3f3f3;
+object-fit: contain;
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+border: 1px solid #e2e2e2;
+transition: transform 0.2s;
+}
+
+/* Hover effect */
+/* Keep hover light to avoid jank while scrolling */
+.category-item:hover img {
+transform: none;
+box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+transform: translateY(-6px);
+}
+
+/* Category name */
+.category-item span {
+margin-top: 0.5rem;
+font-size: 0.875rem;
+font-weight: 600;
+text-align: center;
+color: #4b5563; /* gray-700 */
+white-space: nowrap;
+}
+
+.category-item.active {
+border-color: #2563eb;
+}
+
+.category-item.active img {
+box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+border-color: #2563eb;
+}
+
+.category-item.active span {
+color: #111827;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.category-item img {
+width: 5rem;
+height: 5rem;
+}
+.category-item span {
+font-size: 0.75rem;
+}
+}
+
+@media (max-width: 480px) {
+.category-item img {
+width: 4.5rem;
+height: 4.5rem;
+}
+.category-item span {
+font-size: 0.7rem;
+}
+}
