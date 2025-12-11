@@ -3,6 +3,10 @@
 .cart-item { display:flex; justify-content:space-between; padding:10px 6px; border-bottom:1px solid rgba(0,0,0,0.03) }
 .ci-left { display:flex; flex-direction:column }
 .ci-right { font-weight:700 }
+.qty-controls { display:flex; align-items:center; gap:8px; margin-top:6px }
+.qty-btn { width:28px; height:28px; border-radius:6px; border:1px solid #e5e7eb; background:#fff; color:#111827; font-weight:700; cursor:pointer; line-height:1 }
+.qty-btn:hover { background:#f9fafb }
+.qty-value { min-width:24px; text-align:center; font-weight:700 }
 .cart-actions { margin-top: 18px; display:flex; flex-direction:column; gap:12px }
 .voucher-row { display:flex; gap:8px }
 .voucher-row input { flex:1; padding:10px; border-radius:8px; border:1px solid #e5e7eb }

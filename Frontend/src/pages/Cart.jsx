@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems, removeFromCart } from '../store/cartSlice';
+import { selectCartItems, removeFromCart, updateQuantity } from '../store/cartSlice';
 import api from '../services/api';
 import '../styles/Cart.css';
 
@@ -41,17 +41,27 @@ export default function Cart() {
     setLoading(true);
     setMessage('');
     try {
+      const normalized = String(code).trim().toUpperCase();
+      const userStr = localStorage.getItem('user');
+      const userId = userStr ? (JSON.parse(userStr)?._id || null) : null;
+      if (normalized === 'BOGO' && userId) {
+        const usedKey = `voucherUsed_bogo_${userId}`;
+        const alreadyUsed = localStorage.getItem(usedKey) === 'true';
+        if (alreadyUsed) {
+          setMessage('BOGO already used on your first order');
+          return;
+        }
+        const discount = Math.min(subtotal, 100);
+        setApplied({ code: 'BOGO', type: 'AMOUNT', discount });
+        localStorage.setItem('appliedVoucher', JSON.stringify({ code: 'BOGO', discount }));
+        setMessage('BOGO applied: ₹100 off on first order');
+        return;
+      }
+
       const res = await api.applyVoucher(code);
       let discount = 0;
       if (res.voucher.type === 'BOGO') {
-        const units = [];
-        items.forEach(i => {
-          const qty = parseInt(i.quantity, 10) || 0;
-          const price = parseFloat(i.price) || 0;
-          for (let k = 0; k < qty; k++) units.push(price);
-        });
-        units.sort((a, b) => a - b);
-        discount = units.length ? units[0] : 0;
+        discount = Math.min(subtotal, 100);
       } else if (res.voucher.type === 'PERCENT') {
         discount = Math.round(subtotal * (res.voucher.value / 100) * 100) / 100;
       } else if (res.voucher.type === 'AMOUNT') {
@@ -94,7 +104,31 @@ export default function Cart() {
             <div key={it.id} className="cart-item">
               <div className="ci-left">
                 <strong>{it.name}</strong>
-                <div>Qty: {it.quantity}</div>
+                <div className="qty-controls">
+                  <button
+                    className="qty-btn"
+                    onClick={() => {
+                      const current = parseInt(it.quantity, 10) || 1;
+                      const next = Math.max(1, current - 1);
+                      dispatch(updateQuantity({ id: it.id, quantity: next }));
+                    }}
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
+                  <span className="qty-value">{it.quantity}</span>
+                  <button
+                    className="qty-btn"
+                    onClick={() => {
+                      const current = parseInt(it.quantity, 10) || 1;
+                      const next = current + 1;
+                      dispatch(updateQuantity({ id: it.id, quantity: next }));
+                    }}
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div className="ci-right">
                 <div>₹{((parseFloat(it.price) || 0) * (parseInt(it.quantity, 10) || 0)).toFixed(2)}</div>

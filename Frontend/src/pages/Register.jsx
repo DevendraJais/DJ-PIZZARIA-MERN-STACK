@@ -445,12 +445,16 @@ export default function Register() {
             <div className="voucher-header">🎁 Congratulations!</div>
             <div className="voucher-body">
               <h3>You've received a special voucher</h3>
-              <p className="voucher-type">{voucher.type === 'BOGO' ? 'Buy One Get One Free' : voucher.type}</p>
+              <p className="voucher-type">{voucher.type === 'BOGO' ? '₹100 off on first order' : voucher.type}</p>
               <div className="voucher-code">{voucher.code}</div>
               <small>Valid until: {new Date(voucher.expiresAt).toLocaleDateString()}</small>
             </div>
             <div className="voucher-actions">
-              <button className="btn-apply" onClick={() => { setVoucher(null); navigate('/cart'); }}>Use Now</button>
+              <button className="btn-apply" onClick={() => { 
+                try { localStorage.setItem('voucher', JSON.stringify({ code: voucher.code })); } catch (e) {}
+                setVoucher(null); 
+                navigate('/'); 
+              }}>Use Now</button>
               <button className="btn-close" onClick={() => setVoucher(null)}>Maybe Later</button>
             </div>
           </div>

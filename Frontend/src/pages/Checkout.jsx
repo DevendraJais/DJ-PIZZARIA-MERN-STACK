@@ -189,6 +189,15 @@ export default function Checkout() {
             const userId = parsed && parsed._id;
             if (userId) {
               localStorage.removeItem(`cart_${userId}`);
+              const applied = localStorage.getItem('appliedVoucher');
+              if (applied) {
+                try {
+                  const av = JSON.parse(applied);
+                  if (String(av.code).toUpperCase() === 'BOGO') {
+                    localStorage.setItem(`voucherUsed_bogo_${userId}`, 'true');
+                  }
+                } catch (e) {}
+              }
             }
           }
           localStorage.removeItem('appliedVoucher');
@@ -359,35 +368,44 @@ export default function Checkout() {
                   { lat: 19.095, lng: 72.9250 },
                 ];
                 
-                const order = { 
-                  id: Date.now(), 
-                  customer: customerInfo, 
-                  items, 
-                  total: payableTotal, 
-                  route, 
-                  payment: 'cod',
-                  paymentStatus: 'pending',
-                  status: 'confirmed'
-                };
+              const order = { 
+                id: Date.now(), 
+                customer: customerInfo, 
+                items, 
+                total: payableTotal, 
+                route, 
+                payment: 'cod',
+                paymentStatus: 'pending',
+                status: 'confirmed'
+              };
                 
-                dispatch(placeOrder(order));
-                dispatch(clearCart());
+              dispatch(placeOrder(order));
+              dispatch(clearCart());
 
-                // Clear localStorage cart and notify navbar/cart icon
-                try {
-                  const user = localStorage.getItem('user');
-                  if (user) {
-                    const parsed = JSON.parse(user);
-                    const userId = parsed && parsed._id;
-                    if (userId) {
-                      localStorage.removeItem(`cart_${userId}`);
+              // Clear localStorage cart and notify navbar/cart icon
+              try {
+                const user = localStorage.getItem('user');
+                if (user) {
+                  const parsed = JSON.parse(user);
+                  const userId = parsed && parsed._id;
+                  if (userId) {
+                    localStorage.removeItem(`cart_${userId}`);
+                    const applied = localStorage.getItem('appliedVoucher');
+                    if (applied) {
+                      try {
+                        const av = JSON.parse(applied);
+                        if (String(av.code).toUpperCase() === 'BOGO') {
+                          localStorage.setItem(`voucherUsed_bogo_${userId}`, 'true');
+                        }
+                      } catch (e) {}
                     }
                   }
-                  localStorage.removeItem('appliedVoucher');
-                  try { window.dispatchEvent(new Event('cartUpdated')); } catch (e) {}
-                } catch (e) {
-                  console.error('Error clearing local cart after COD order:', e);
                 }
+                localStorage.removeItem('appliedVoucher');
+                try { window.dispatchEvent(new Event('cartUpdated')); } catch (e) {}
+              } catch (e) {
+                console.error('Error clearing local cart after COD order:', e);
+              }
                 navigate('/confirmation');
               }}
               disabled={isProcessing || !customerInfo.name || !customerInfo.phone || !customerInfo.address}
