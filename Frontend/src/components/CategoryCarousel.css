@@ -52,9 +52,9 @@ transition: transform 0.2s;
 /* Hover effect */
 /* Keep hover light to avoid jank while scrolling */
 .category-item:hover img {
-transform: none;
-box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-transform: translateY(-6px);
+  transform: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  transform: translateY(-6px);
 }
 
 /* Category name */
@@ -82,21 +82,34 @@ color: #111827;
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-.category-item img {
-width: 5rem;
-height: 5rem;
-}
-.category-item span {
-font-size: 0.75rem;
-}
+  .category-item img {
+    width: 5rem;
+    height: 5rem;
+  }
+  .category-item span {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
-.category-item img {
-width: 4.5rem;
-height: 4.5rem;
+  .category-item img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  .category-item span {
+    font-size: 0.7rem;
+  }
 }
-.category-item span {
-font-size: 0.7rem;
-}
+
+@media (hover: none) {
+  .category-slider {
+    scroll-behavior: auto;
+  }
+  .category-item img {
+    transition: none;
+  }
+  .category-item:hover img {
+    transform: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
 }
