@@ -20,7 +20,7 @@ export default function Login() {
 
     try {
       // Backend API call
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://dj-pizzaria-mern-stack.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

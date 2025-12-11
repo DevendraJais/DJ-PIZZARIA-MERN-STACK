@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://dj-pizzaria-mern-stack.onrender.com/api';
 const TIMEOUT = 10000; // 10 seconds
 
 export const apiRequest = async (endpoint, options = {}) => {

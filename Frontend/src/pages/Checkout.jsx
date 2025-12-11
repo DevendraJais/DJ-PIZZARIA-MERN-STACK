@@ -50,7 +50,7 @@ export default function Checkout() {
         setIsProcessing(true);
         
         // Create payment intent
-        const response = await axios.post('http://localhost:5000/api/payments/create-payment-intent', {
+        const response = await axios.post('https://dj-pizzaria-mern-stack.onrender.com/api/payments/create-payment-intent', {
           amount: payableTotal * 100,
           currency: 'inr',
           metadata: {
