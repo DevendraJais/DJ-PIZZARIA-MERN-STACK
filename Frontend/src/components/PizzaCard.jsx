@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { addToCart } from '../store/cartSlice';
 import './PizzaCarousel.css';
@@ -7,6 +8,7 @@ import './PizzaCarousel.css';
 
 export default function PizzaCard({ pizza }){
 const dispatch = useDispatch();
+const navigate = useNavigate();
 const [selectedPizza, setSelectedPizza] = useState(null);
 const [showLoginPopup, setShowLoginPopup] = useState(false);
 
@@ -157,7 +159,7 @@ return (
 
       <button
         className="popup-login-btn"
-        onClick={() => (window.location.href = "/login")}
+        onClick={() => navigate('/login')}
       >
         Login
       </button>
