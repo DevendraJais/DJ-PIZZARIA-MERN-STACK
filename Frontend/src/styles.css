@@ -534,6 +534,20 @@ body {
 .btn{ display:inline-block; padding:10px 14px; background:var(--accent); color:#fff; border-radius:10px; text-decoration:none; border: 1px solid rgba(0,0,0,0.02) }
 @media (max-width:900px){ .hero .hero-inner{ grid-template-columns:1fr } .hero{ text-align:center } }
 
+/* Extra-small devices tweaks */
+@media (max-width: 600px) {
+  .hero { padding: 60px 0; }
+  .hero h1 { font-size: 2.25rem; line-height: 1.15; }
+  .hero p { font-size: 1rem; }
+  .hero .hero-inner { gap: 20px; }
+  .hero-visual { min-height: 220px; }
+  .hero-visual .frame { height: auto; }
+  .floating-badge { left: 8px; bottom: 8px; font-size: .8rem; padding: 8px 10px; }
+  .container { padding: 0 12px; }
+  .cta { padding: 10px 14px; }
+  .nav img { width: 7.5rem; height: 2.2rem; }
+}
+
 /* Themed sections */
 .section{ position:relative; border:1px solid var(--border); background:linear-gradient(180deg,#ffffff, #fffefe); border-radius:16px; padding:24px; box-shadow:var(--shadow) }
 .section.alt{ background:linear-gradient(180deg,#fff7f7,#ffffff) }
